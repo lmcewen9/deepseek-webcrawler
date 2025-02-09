@@ -20,3 +20,8 @@ class Spider(scrapy.Spider):
         headers = {"Content-Type": "application/json"}
         response = requests.post(api_url, json=payload, headers=headers)
         return response.json().get("choices", [{}])[0].get("text", "").strip()
+
+# This allows Scrapy to run the script standalone
+if __name__ == "__main__":
+    from scrapy.cmdline import execute
+    execute(["scrapy", "runspider", __file__])
