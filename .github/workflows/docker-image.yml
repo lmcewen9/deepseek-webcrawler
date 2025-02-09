@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout Github Action"
+      uses: actions/checkout@v4
+
+    - name: "Login to Github Container Registry"
+      uses: docker/login-action@v3
+      with:
+        registry: ${{secrets.REGISTRY_URL}}
+        username: quwen
+        password: ${{secrets.REGISTRY_PASSWORD}}
+    - name: Build and Push
+      uses: docker/build-push-action@v3
+      with:
+        context: ./deepseek-api
+        file: ./deepseek-api/Dockerfile
+        push: true
+        tags: quwen/deepseek-api:latest
