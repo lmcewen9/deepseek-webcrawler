@@ -5,4 +5,4 @@ RUN pip3 install torch torchvision vllm
 
 EXPOSE 8000
 
-CMD ["python", "-m", "vllm.entrypoints.openai.api_server", "--model", "deepseek-ai/deepseek-v3", "--gpu-memory-utilization", "0.9"]
+CMD ["python3", "-m", "vllm.entrypoints.openai.api_server", "--model", "deepseek-ai/deepseek-v3", "--gpu-memory-utilization", "0.9"]
